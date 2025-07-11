@@ -60,6 +60,7 @@
     docker build -f with.env.Dockerfile -t linsamtw/tibame_crawler:0.0.5 .
     docker build -f with.env.Dockerfile -t linsamtw/tibame_crawler:0.0.6 .
     docker buildx build -f with.env.Dockerfile --platform linux/arm64 -t linsamtw/tibame_crawler:0.0.6.arm64 .
+    docker build -f with.env.Dockerfile -t linsamtw/tibame_crawler:0.0.7 .
 
 #### push docker image
 
@@ -70,6 +71,7 @@
     docker push linsamtw/tibame_crawler:0.0.5
     docker push linsamtw/tibame_crawler:0.0.6
     docker push linsamtw/tibame_crawler:0.0.6.arm64
+    docker push linsamtw/tibame_crawler:0.0.7
 
 #### 建立 network
 
