@@ -1,5 +1,5 @@
 from celery import Celery
-
+from loguru import logger
 from crawler.config import (
     RABBITMQ_HOST,
     RABBITMQ_PORT,
@@ -7,6 +7,14 @@ from crawler.config import (
     WORKER_PASSWORD,
 )
 
+logger.info(
+    f"""
+    RABBITMQ_HOST: {RABBITMQ_HOST}
+    RABBITMQ_HOST: {RABBITMQ_PORT}
+    RABBITMQ_HOST: {WORKER_ACCOUNT}
+    RABBITMQ_HOST: {WORKER_PASSWORD}
+"""
+)
 app = Celery(
     "task",
     # 只包含 tasks.py 裡面的程式, 才會成功執行
