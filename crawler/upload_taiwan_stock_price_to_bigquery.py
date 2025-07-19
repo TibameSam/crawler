@@ -38,7 +38,7 @@ def create_taiwan_stock_price_table(client):
     # 設定以 "Date" 欄位作為時間分區，每日一區，並強制查詢時加上分區條件
     table.time_partitioning = bigquery.TimePartitioning(
         type_=bigquery.TimePartitioningType.DAY,
-        field="date",
+        field="Date",
         require_partition_filter=True,
     )
 
