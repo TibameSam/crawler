@@ -1,5 +1,6 @@
 from celery import Celery
 from loguru import logger
+
 from crawler.config import (
     RABBITMQ_HOST,
     RABBITMQ_PORT,

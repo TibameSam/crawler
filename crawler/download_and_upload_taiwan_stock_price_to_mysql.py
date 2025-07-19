@@ -2,6 +2,7 @@
 import pandas as pd  # 用來處理資料表（DataFrame）
 from loguru import logger  # 日誌工具，用來輸出 log 訊息
 from sqlalchemy import create_engine  # 建立資料庫連線的工具（SQLAlchemy）
+
 from crawler.config import MYSQL_ACCOUNT, MYSQL_HOST, MYSQL_PASSWORD, MYSQL_PORT
 
 if __name__ == "__main__":

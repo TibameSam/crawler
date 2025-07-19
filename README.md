@@ -139,3 +139,13 @@
 #### 上傳 taiwan_stock_price.csv
 
     pipenv run python crawler/upload_taiwan_stock_price_to_mysql.py
+
+#### login
+    gcloud auth login
+
+#### set GCP project
+    gcloud config set project high-transit-465916-a6
+
+#### 上傳台股股價到 BigQuery
+    pipenv run python crawler/upload_taiwan_stock_price_to_bigquery.py
+
