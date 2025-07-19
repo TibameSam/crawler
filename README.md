@@ -141,7 +141,7 @@
     pipenv run python crawler/upload_taiwan_stock_price_to_mysql.py
 
 #### login
-    gcloud auth login
+    gcloud auth application-default login
 
 #### set GCP project
     gcloud config set project high-transit-465916-a6
