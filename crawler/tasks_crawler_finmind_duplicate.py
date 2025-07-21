@@ -14,7 +14,7 @@ def upload_data_to_mysql_duplicate(df: pd.DataFrame):
     # 定義資料庫連線字串（MySQL 資料庫）
     # 格式：mysql+pymysql://使用者:密碼@主機:port/資料庫名稱
     # 上傳到 mydb, 同學可切換成自己的 database
-    address = f"mysql+pymysql://{MYSQL_ACCOUNT}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/mydb"
+    address = f"mysql+pymysql://{MYSQL_ACCOUNT}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/tibame"
 
     # 建立 SQLAlchemy 引擎物件
     engine = create_engine(address)
