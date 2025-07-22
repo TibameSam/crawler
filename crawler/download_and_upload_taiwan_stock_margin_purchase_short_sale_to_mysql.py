@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     # 建立一個空的 DataFrame 並加入一個欄位 column_1，內容是 0~9
     df = pd.read_csv(
-        "https://github.com/FinMind/FinMindBook/releases/download/data/taiwan_stock_margin_purchase_short_sale.csv"
+        "https://github.com/TibameSam/services/releases/download/test/TaiwanStockMarginPurchaseShortSale.csv",
     )
     logger.info(f"upload \n{df}")
     # 將 DataFrame 上傳至 MySQL 資料庫中的 test_upload 資料表
