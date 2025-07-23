@@ -151,3 +151,5 @@
 #### 上傳台股股價到 BigQuery
     pipenv run python crawler/upload_taiwan_stock_price_to_bigquery.py
 
+#### 輸入 Secret Manager
+    pipenv run python crawler/print_secret_manager.py
