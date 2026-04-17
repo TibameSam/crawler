@@ -2,17 +2,21 @@
 
 # 環境設定
 
-#### 安裝 pipenv
+#### 安裝 uv
 
-    pip install pipenv==2022.4.8
+    curl -LsSf https://astral.sh/uv/install.sh | sh
 
-#### set pipenv
+#### 安裝 Python 3.11
 
-    pipenv --python ~/.pyenv/versions/3.8.10/bin/python
+    uv python install 3.11
+
+#### set uv 虛擬環境
+
+    uv venv --python 3.11
 
 #### 安裝 repo 套件
 
-    pipenv sync
+    uv sync
 
 #### 建立環境變數
 
@@ -28,25 +32,25 @@
 
 #### 啟動預設執行 celery 的 queue 的工人
 
-    pipenv run celery -A crawler.worker worker --loglevel=info
+    uv run --env-file=.env celery -A crawler.worker worker --loglevel=info
 
 #### 啟動執行 twse 的 queue 的工人
 
-    pipenv run celery -A crawler.worker worker -Q twse,tpex --loglevel=info
+    uv run --env-file=.env celery -A crawler.worker worker -Q twse,tpex --loglevel=info
 
 # Producer
 
 #### 發送任務
 
-    pipenv run python crawler/producer.py
+    uv run --env-file=.env python crawler/producer.py
 
 #### for loop 發送多個任務
 
-    pipenv run python crawler/producer_crawler_finmind.py
+    uv run --env-file=.env python crawler/producer_crawler_finmind.py
 
 #### 發送任務到不同 queue
 
-    pipenv run python crawler/producer_multi_queue.py
+    uv run --env-file=.env python crawler/producer_multi_queue.py
 
 
 # Docker
@@ -140,7 +144,7 @@
 
 #### 上傳 taiwan_stock_price.csv
 
-    pipenv run python crawler/upload_taiwan_stock_price_to_mysql.py
+    uv run --env-file=.env python crawler/upload_taiwan_stock_price_to_mysql.py
 
 #### login
     gcloud auth application-default login
@@ -149,7 +153,7 @@
     gcloud config set project high-transit-465916-a6
 
 #### 上傳台股股價到 BigQuery
-    pipenv run python crawler/upload_taiwan_stock_price_to_bigquery.py
+    uv run --env-file=.env python crawler/upload_taiwan_stock_price_to_bigquery.py
 
 #### 輸入 Secret Manager
-    pipenv run python crawler/print_secret_manager.py
+    uv run --env-file=.env python crawler/print_secret_manager.py

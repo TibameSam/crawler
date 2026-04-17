@@ -4,7 +4,7 @@ services:
   scheduler:
     image: linsamtw/tibame_crawler:${DOCKER_IMAGE_VERSION}  # 使用的映像檔名稱與標籤（版本）
     hostname: "scheduler"  # 設定 hostname = scheduler
-    command: pipenv run python crawler/scheduler.py
+    command: uv run --env-file=.env python crawler/scheduler.py
     restart: always  # 若容器停止或崩潰，自動重新啟動
     environment:
       - TZ=Asia/Taipei  # 設定時區為台北（UTC+8）
