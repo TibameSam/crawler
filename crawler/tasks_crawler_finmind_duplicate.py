@@ -56,8 +56,10 @@ def upload_data_to_mysql_duplicate(df: pd.DataFrame):
 
 
 # 註冊 task, 有註冊的 task 才可以變成任務發送給 rabbitmq
+# 這版本會處理「重複資料」, 適合需要定期更新但不想重複寫入的情境
 @app.task()
 def crawler_finmind_duplicate(stock_id):
+    # FinMind API endpoint
     url = "https://api.finmindtrade.com/api/v4/data"
     parameter = {
         "dataset": "TaiwanStockPrice",
@@ -65,12 +67,14 @@ def crawler_finmind_duplicate(stock_id):
         "start_date": "2024-01-01",
         "end_date": "2025-06-17",
     }
+    # 發送 HTTP GET 取得資料
     resp = requests.get(url, params=parameter)
     data = resp.json()
     if resp.status_code == 200:
         df = pd.DataFrame(data["data"])
         print(df)
         # print("upload db")
+        # 寫入 MySQL, 遇到主鍵重複會自動 update 而非報錯
         upload_data_to_mysql_duplicate(df)
     else:
         print(data["msg"])
