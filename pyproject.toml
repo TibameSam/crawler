@@ -13,7 +13,7 @@ classifiers = [
 dependencies = [
     "flask==2.3.3",
     "celery==5.5.0",
-    "pandas",
+    "pandas>=2,<3",
     "requests",
     "apscheduler==3.10.4",
     "loguru==0.6.0",
@@ -21,7 +21,7 @@ dependencies = [
     "pymysql==1.1.1",
     "google-cloud-bigquery==3.20.1",
     "tqdm",
-    "pyarrow==12.0.0",
+    "pyarrow>=17",
     "google-cloud-secret-manager==2.20.0",
 ]
 
