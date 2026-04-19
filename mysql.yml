@@ -28,12 +28,15 @@ services:
           - my_network
 
   phpmyadmin:
-      image: phpmyadmin/phpmyadmin:5.1.0
-      links: 
-          - mysql:db
+      # 升級到 5.2, 支援 amd64 / arm64 (Mac M1/M2 適用)
+      image: phpmyadmin:5.2
       restart: always  # 若容器停止或崩潰，自動重新啟動
       ports:
           - 8000:80
+      environment:
+          # 使用 network 服務名稱連線到 mysql (取代過時的 links 寫法)
+          PMA_HOST: mysql
+          PMA_PORT: 3306
       depends_on:
         - mysql
       networks:
