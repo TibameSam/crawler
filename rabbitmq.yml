@@ -17,7 +17,7 @@ services:
   flower:
     # 使用 Flower 映像來監控 Celery 的任務佇列狀況（支援 amd64 / arm64）
     image: mher/flower:2.0
-    command: ["flower", "--broker=amqp://worker:worker@rabbitmq", "--port=5555"]  
+    command: ["celery", "--broker=amqp://worker:worker@rabbitmq", "flower", "--port=5555"]
     # 啟動 Flower，設定 RabbitMQ 為 broker，並監聽 5555 埠口
     ports: 
       - 5555:5555                           # 映射 Flower 的監控介面埠口到宿主機
