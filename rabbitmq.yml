@@ -2,8 +2,8 @@ version: '3'
 services:
 
   rabbitmq:
-    # 使用 RabbitMQ 官方管理版的輕量 Alpine 版本映像檔
-    image: 'rabbitmq:3.6-management-alpine'
+    # 使用 RabbitMQ 官方管理版的輕量 Alpine 版本映像檔（支援 amd64 / arm64）
+    image: 'rabbitmq:3.13-management-alpine'
     ports: 
       - '5672:5672'       # 對外開放 RabbitMQ 的 AMQP 通訊埠（應用程式通訊埠）
       - '15672:15672'     # 對外開放 RabbitMQ 的管理介面（Web UI）埠口
@@ -15,8 +15,8 @@ services:
       - dev                                 # 將服務加入名為 dev 的自訂網路
 
   flower:
-    # 使用 Flower 映像來監控 Celery 的任務佇列狀況
-    image: mher/flower:0.9.5
+    # 使用 Flower 映像來監控 Celery 的任務佇列狀況（支援 amd64 / arm64）
+    image: mher/flower:2.0
     command: ["flower", "--broker=amqp://worker:worker@rabbitmq", "--port=5555"]  
     # 啟動 Flower，設定 RabbitMQ 為 broker，並監聽 5555 埠口
     ports: 
