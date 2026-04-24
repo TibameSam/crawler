@@ -212,24 +212,29 @@ FROM ubuntu:22.04               ← 從乾淨的 Ubuntu 開始
 
 #### 啟動預設執行 celery 的 queue 的工人
 
+    uv run celery -A crawler.worker worker --loglevel=info
     uv run --env-file=.env celery -A crawler.worker worker --loglevel=info
 
 #### 啟動執行 twse 的 queue 的工人
 
+    uv run celery -A crawler.worker worker -Q twse,tpex --loglevel=info
     uv run --env-file=.env celery -A crawler.worker worker -Q twse,tpex --loglevel=info
 
 # Producer
 
 #### 發送任務
 
+    uv run python crawler/producer.py
     uv run --env-file=.env python crawler/producer.py
 
 #### for loop 發送多個任務
 
+    uv run python crawler/producer_crawler_finmind.py
     uv run --env-file=.env python crawler/producer_crawler_finmind.py
 
 #### 發送任務到不同 queue
 
+    uv run python crawler/producer_multi_queue.py
     uv run --env-file=.env python crawler/producer_multi_queue.py
 
 
