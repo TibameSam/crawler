@@ -4,7 +4,7 @@ services:
   crawler_twse:  # 定義一個服務，名稱為 crawler_twse
     image: linsamtw/tibame_crawler:0.0.1  # 使用的映像檔名稱與標籤（版本）
     hostname: "twse"  # 設定 hostname = twse
-    command: uv run --env-file=.env celery -A crawler.worker worker --loglevel=info --hostname=%h -Q twse  
+    command: uv run celery -A crawler.worker worker --loglevel=info --hostname=%h -Q twse  
     # 啟動容器後執行的命令，這裡是啟動 Celery worker，指定 app 為 crawler.worker，設定日誌等級為 info，
     # 使用主機名稱當作 worker 名稱（%h），並將此 worker 加入名為 "twse" 的任務佇列 (queue)
 

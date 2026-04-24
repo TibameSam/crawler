@@ -16,7 +16,7 @@ def crawler_finmind_print(stock_id):
     # API 參數: 指定要抓哪個資料集、哪檔股票、日期範圍
     parameter = {
         "dataset": "TaiwanStockPrice",  # 台股日線資料
-        "data_id": stock_id,             # 股票代碼, ex: 2330
+        "data_id": stock_id,  # 股票代碼, ex: 2330
         "start_date": "2024-01-01",
         "end_date": "2025-06-17",
     }
@@ -39,20 +39,23 @@ def upload_data_to_mysql(df: pd.DataFrame):
     # 定義資料庫連線字串（MySQL 資料庫）
     # 格式：mysql+pymysql://使用者:密碼@主機:port/資料庫名稱
     # 上傳到 mydb, 同學可切換成自己的 database
-    address = f"mysql+pymysql://{MYSQL_ACCOUNT}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/tibame"
+    try:
+        address = f"mysql+pymysql://{MYSQL_ACCOUNT}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/tibame"
 
-    # 建立 SQLAlchemy 引擎物件
-    engine = create_engine(address)
+        # 建立 SQLAlchemy 引擎物件
+        engine = create_engine(address)
 
-    # 建立連線（可用於 Pandas、原生 SQL 操作）
-    connect = engine.connect()
+        # 建立連線（可用於 Pandas、原生 SQL 操作）
+        connect = engine.connect()
 
-    df.to_sql(
-        "TaiwanStockPrice",
-        con=connect,
-        if_exists="append",
-        index=False,
-    )
+        df.to_sql(
+            "TaiwanStockPrice",
+            con=connect,
+            if_exists="append",
+            index=False,
+        )
+    except Exception as e:
+        pass
 
 
 # 註冊 task, 有註冊的 task 才可以變成任務發送給 rabbitmq
@@ -63,7 +66,7 @@ def crawler_finmind(stock_id):
     # API 參數: 指定要抓哪個資料集、哪檔股票、日期範圍
     parameter = {
         "dataset": "TaiwanStockPrice",  # 台股日線資料
-        "data_id": stock_id,             # 股票代碼, ex: 2330
+        "data_id": stock_id,  # 股票代碼, ex: 2330
         "start_date": "2024-01-01",
         "end_date": "2025-06-17",
     }
