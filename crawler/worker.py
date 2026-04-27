@@ -34,6 +34,6 @@ app = Celery(
     ],
     # broker: 指定訊息中介的連線網址, Celery 會把任務送到這裡排隊
     # 格式: pyamqp://帳號:密碼@主機:埠號/
-    # 例如: pyamqp://worker:worker@rabbitmq:5672/
+    # 例如: pyamqp://worker:worker@127.0.0.1:5672/
     broker=f"pyamqp://{WORKER_ACCOUNT}:{WORKER_PASSWORD}@{RABBITMQ_HOST}:{RABBITMQ_PORT}/",
 )
