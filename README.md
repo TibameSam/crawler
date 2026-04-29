@@ -311,6 +311,10 @@ FROM ubuntu:22.04               ← 從乾淨的 Ubuntu 開始
 
     docker ps -a
 
+#### 查看 log
+
+    docker logs container_name
+
 #### 啟動 scheduler
 
     DOCKER_IMAGE_VERSION=0.0.4 docker compose -f docker-compose-scheduler-network-version.yml up -d
@@ -318,10 +322,6 @@ FROM ubuntu:22.04               ← 從乾淨的 Ubuntu 開始
 #### 關閉 scheduler
 
     DOCKER_IMAGE_VERSION=0.0.4 docker compose -f docker-compose-scheduler-network-version.yml down
-
-#### 查看 log
-
-    docker logs container_name
 
 #### 下載 taiwan_stock_price.csv
 
