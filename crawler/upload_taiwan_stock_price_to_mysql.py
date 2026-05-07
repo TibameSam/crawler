@@ -11,9 +11,6 @@ if __name__ == "__main__":
     # 建立 SQLAlchemy 引擎物件
     engine = create_engine(address)
 
-    # 建立連線（可用於 Pandas、原生 SQL 操作）
-    connect = engine.connect()
-
     # 建立一個空的 DataFrame 並加入一個欄位 column_1，內容是 0~9
     df = pd.read_csv("taiwan_stock_price.csv")
     logger.info(f"upload \n{df}")
@@ -22,7 +19,7 @@ if __name__ == "__main__":
     # index=False 表示不上傳索引欄位
     df.to_sql(
         "taiwan_stock_price",
-        con=connect,
+        con=engine,
         if_exists="replace",
         index=False,
     )

@@ -21,9 +21,6 @@ engine = create_engine(
     f"mysql+pymysql://{MYSQL_ACCOUNT}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/tibame"
 )
 
-# 開啟連線
-conn = engine.connect()
-
 # 定義資料表結構，對應到 MySQL 中的 test_duplicate 表
 metadata = MetaData()
 stock_price_table = Table(

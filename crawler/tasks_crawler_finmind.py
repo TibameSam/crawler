@@ -45,12 +45,9 @@ def upload_data_to_mysql(df: pd.DataFrame):
         # 建立 SQLAlchemy 引擎物件
         engine = create_engine(address)
 
-        # 建立連線（可用於 Pandas、原生 SQL 操作）
-        connect = engine.connect()
-
         df.to_sql(
             "TaiwanStockPrice",
-            con=connect,
+            con=engine,
             if_exists="append",
             index=False,
         )
