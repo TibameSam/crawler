@@ -71,6 +71,15 @@ if __name__ == "__main__":
 
     logger.info("Uploading to BigQuery...")
     table_id = "high-transit-465916-a6.TaiwanStock.taiwan_stock_price"
+    # 採用 load_table_from_dataframe（Load Job 批次載入）寫入資料：
+    #   - 機制：DataFrame 先序列化為 Parquet，再以批次 job 匯入 table
+    #   - 費用：load job 免費（僅計儲存），不像 insert_rows_json 的
+    #           streaming insert 會依寫入量計費
+    #   - 適用：每日整批股價這種「大量、批次」場景；資料直接進
+    #           table storage，沒有 streaming buffer 短期難刪改的問題
+    #   - 代價：非同步，需呼叫 load_job.result() 等待 job 完成
+    # 若改用 insert_rows_json（streaming insert）則適合「即時、少量、
+    # 持續」進來的資料（如 log/事件流），但要付費且有 streaming buffer 延遲
     load_job = client.load_table_from_dataframe(
         df, table_id, job_config=job_config
     )

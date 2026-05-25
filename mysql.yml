@@ -15,8 +15,8 @@ services:
       environment: # 環境變數, 設置 db, user, password, root_password
           MYSQL_DATABASE: mydb
           MYSQL_USER: user
-          MYSQL_PASSWORD: test
-          MYSQL_ROOT_PASSWORD: test
+          MYSQL_PASSWORD: ppWgnb_mfGe2m_
+          MYSQL_ROOT_PASSWORD: ppWgnb_mfGe2m_
       restart: always  # 若容器停止或崩潰，自動重新啟動
       volumes:
           - mysql:/var/lib/mysql
@@ -32,7 +32,7 @@ services:
       image: phpmyadmin:5.2
       restart: always  # 若容器停止或崩潰，自動重新啟動
       ports:
-          - 8000:80
+          - 8080:80
       environment:
           # 使用 network 服務名稱連線到 mysql (取代過時的 links 寫法)
           PMA_HOST: mysql
