@@ -9,7 +9,7 @@ if __name__ == "__main__":
     # 定義資料庫連線字串（MySQL 資料庫）
     # 格式：mysql+pymysql://使用者:密碼@主機:port/資料庫名稱
     engine = create_engine(
-        f"mysql+pymysql://{MYSQL_ACCOUNT}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/tibame"
+        f"mysql+pymysql://{MYSQL_ACCOUNT}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/mydb"
     )
 
     # 建立一個空的 DataFrame 並加入一個欄位 column_1，內容是 0~9
