@@ -198,6 +198,11 @@ FROM ubuntu:22.04               ← 從乾淨的 Ubuntu 開始
 
     uv sync
 
+#### 安裝 package
+
+    uv add flask
+    uv add flask==3.0.0
+
 #### 建立環境變數
 
     ENV=DEV python genenv.py
