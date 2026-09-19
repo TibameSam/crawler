@@ -6,7 +6,7 @@ from sqlalchemy import create_engine  # 建立資料庫連線的工具（SQLAlch
 if __name__ == "__main__":
     # 定義資料庫連線字串（MySQL 資料庫）
     # 格式：mysql+pymysql://使用者:密碼@主機:port/資料庫名稱
-    address = "mysql+pymysql://root:test@127.0.0.1:3306/mydb"
+    address = "mysql+pymysql://root:ppWgnb_mfGe2m_@127.0.0.1:3306/mydb"
 
     # 建立 SQLAlchemy 引擎物件
     engine = create_engine(address)
